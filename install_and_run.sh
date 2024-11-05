@@ -27,6 +27,7 @@ fi
 # Gerekli Python paketlerini yükle
 echo "Gerekli Python paketlerini yüklüyoruz..."
 pip3 install selenium web3 python-dotenv webdriver-manager
+sudo pip3 install --upgrade requests
 
 # Google Chrome'u yükle
 wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
