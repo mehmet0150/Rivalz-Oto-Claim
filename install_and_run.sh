@@ -1,5 +1,5 @@
 #!/bin/bash
-
+sudo apt-get update
 # Python ve pip'in sistemde kurulu olup olmadığını kontrol et
 echo "Python 3 ve pip'in sisteminizde kurulu olup olmadığını kontrol ediyoruz..."
 
