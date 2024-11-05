@@ -41,7 +41,7 @@ echo "Lütfen .env dosyasını oluşturmak için gerekli bilgileri girin."
 # Kullanıcıdan Private Key ve Password bilgilerini al
 echo "PRIVATE_KEY bilgisini girin:"
 read PRIVATE_KEY
-echo "PASSWORD bilgisini girin:"
+echo "Rainbow Walletta kullanmak üzere bir PASSWORD bilgisi ekleyin. (Minimum 8 karakter tavsie edilir):"
 read PASSWORD
 
 # .env dosyasını oluştur
