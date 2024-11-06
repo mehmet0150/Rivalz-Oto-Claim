@@ -36,6 +36,9 @@ sudo apt install -y ./google-chrome-stable_current_amd64.deb
 # Temizlik yap
 rm google-chrome-stable_current_amd64.deb
 
+# xvfb sanal ekran kurulumunu yap
+sudo apt-get install xvfb
+
 # .env dosyasını oluştur
 echo "Lütfen .env dosyasını oluşturmak için gerekli bilgileri girin."
 
