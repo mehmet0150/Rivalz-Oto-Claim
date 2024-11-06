@@ -1,13 +1,13 @@
-# **Rivalz Oto Claim Bot**
+# **Rivalz Fragmentz v2 Oto Claim Bot**
 
-Bu repo, **Rivalz AI** platformunda **Fragmentz** token'larını otomatik olarak mintlemek (claim etmek) için geliştirilmiş bir Python botudur. Bot, kullanıcıya kolay bir kurulum ve kullanım deneyimi sunmayı amaçlar.
+Bu repo, **Rivalz AI** platformunda **Fragmentz v2** token'larını otomatik olarak mintlemek (claim etmek) için geliştirilmiş bir Python botudur. Bot, kullanıcıya kolay bir kurulum ve kullanım deneyimi sunmayı amaçlar.
 
 ## **Özellikler**
 
 - **Rainbow Wallet**'ı otomatik olarak indirir, başlatır ve cüzdanı içe aktarır.
 - **Rivalz2** ağını cüzdana ekler.
 - Web3 ile cüzdan bakiyesi sorgulaması yapar.
-- **Fragmentz** token'larını mintler (claim eder).
+- **Fragmentz v2** token'larını mintler (claim eder).
 - Kullanıcıdan sadece gerekli bilgilerin girilmesini bekler ve tüm işlemleri otomatik olarak yapar.
 
 ---
@@ -19,8 +19,10 @@ Botu çalıştırmak için aşağıdaki yazılımlar gereklidir:
 
 - **Python 3** (Python 3.6 ve üzeri - Otomatik yüklenir)
 - **pip** (Python paket yöneticisi - Otomatik yüklenir)
+- **Gerekli pip Paketleri** selenium web3 python-dotenv webdriver-manager pyvirtualdisplay termcolor (Otomatik yüklenir)
 - **Google Chrome** (Chrome tarayıcısı - Otomatik yüklenir)
-- **ChromeDriver** (Webdriver -Otomatik yüklenir)
+- **ChromeDriver** (Webdriver - Otomatik yüklenir)
+- **Xvfb Sanal Ekran** (Otomatik yüklenir)
 - **Rainbow Wallet** Chrome uzantısı (Otomatik yüklenir)
 
 ### **Kurulum Adımları**
@@ -39,6 +41,10 @@ Linux veya Mac işletim sisteminde kurulum ve çalışma için aşağıdaki scri
    ```bash
    git clone https://github.com/mehmet0150/Rivalz-Oto-Claim.git
    ```
+2. Yeni bir screen oluşturun:
+   ```bash
+   screen -S fragmentz-mk
+   ```
 3. ilgili klasöre girin:
    ```bash
    cd Rivalz-Oto-Claim
@@ -48,14 +54,17 @@ Linux veya Mac işletim sisteminde kurulum ve çalışma için aşağıdaki scri
     chmod +x install_and_run.sh  # Script'e çalıştırma izni ver
     ./install_and_run.sh  # Script'i çalıştır
     ```
+5. Bot çalışmaya başladıktan sonra screen'den `ctrl` + `c` ile çıkış yapın.
+
+6. Botun çalışması için gerekli olan **Rivalz test ethereumlarını** cüzdanınıza sıklıkla almayı unutmayın.
 
 ### **2. .env Dosyasını Oluşturma ve Dosyanın İçeriği**
 
-Script çalıştırıldığında, kullanıcıdan **Private Key** ve **Password** bilgileri istenecektir. Bu bilgiler `.env` dosyasına kaydedilecektir.
+Script çalıştırıldığında öncelikle gerekli yazılımları kuracak ardından kullanıcıdan **Private Key** ve **Password** bilgileri istenecektir. Bu bilgiler `.env` dosyasına kaydedilecektir.
 
 Botun çalışabilmesi için aşağıdaki iki bilgi script tarafından `.env` dosyasına otomatik olarak eklenecektir:
 
-- **PRIVATE_KEY**: Cüzdanınızın private key'i. Bu, Web3 ile cüzdanı içe aktarmak için gereklidir.
+- **PRIVATE_KEY**: Fragmentz v2 için kullanmak istediğiniz cüzdanınızın private key'i. Bu, Web3 ile cüzdanı içe aktarmak için gereklidir.
 - **PASSWORD**: Rainbow Wallet cüzdanının şifresi.
 
 Örnek `.env` dosyası:
@@ -66,7 +75,7 @@ PASSWORD=your_wallet_password_here
 ```
 Script'in sonunda bot otomatik olarak çalışacaktır.
 
-**Not: Cüzdanınızın güvenliği tamamen size aittir. Otomasyon verdiğiniz Private Key ile sadece mintleme işlemi yapmak üzere tasarlanmıştır. Bu kodu indirip kullanıyorsanız bu sorumluluğu alıyorsunuz demektir.**
+**Not: Cüzdanınızın güvenliği tamamen size aittir. Otomasyon verdiğiniz Private Key ile sadece mintleme işlemi yapmak üzere tasarlanmıştır. Bu botu indirip kullanıyorsanız bu sorumluluğu alıyorsunuz demektir.**
 
 ---
 
@@ -76,9 +85,9 @@ Script'in sonunda bot otomatik olarak çalışacaktır.
 
 1. **Rainbow Wallet**'ı başlatır ve cüzdanınızı içe aktarır.
 2. **Rivalz2** ağını cüzdanınıza ekler.
-3. **Cüzdan bakiyesi** sorgulanır (eth_balance).
-4. **Fragmentz mintleme** işlemi yapılır.
-5. Tüm bu işlemler başarıyla tamamlandıktan sonra, bot otomatik olarak bekleme durumuna geçer ve bir soanraki mintleme zamanını beklemeye başlar. İşlemler sırasında beklenmeyen bir hata oluşursa bot sona erer.
+3. **Cüzdan bakiyesi** sorgulanır (Rivalz eth_balance).
+4. **Fragmentz v2 mintleme** işlemi yapılır.
+5. Tüm bu işlemler başarıyla tamamlandıktan sonra, bot otomatik olarak bekleme durumuna geçer ve bir soanraki mintleme zamanını beklemeye başlar. İşlemler sırasında beklenmeyen bir hata oluşursa bot sona erer. Zaman zaman botu kontrol etmeniz sorunlara erken müdahale etme imkanı sağlar.
 
 #### **Scriptin Çalıştırılması:**
 
@@ -98,7 +107,7 @@ Botu ilk çalıştırmada **install_and_run.sh** (Linux/Mac) ile başlatmanız g
 
 4. **"Rivalz ETH" Bakiye Sorgulama**: Yeterli "Rivalz ETH" bakiyesi olup olmadığı sorgulanır. İşlem ücretlerini karşılayacak yeterli ETH yoksa, bot 30 saniye aralıklarla bakiye kontrolü yapar. Yeterli bakiye oluşması durumunda işlemlerine otomatik olarak devam eder.
 
-5. **Fragmentz Mintleme**: Yeterli ETH bakiyesi varsa, Fragmentz token'larını mintleme işlemi başlatılır. 
+5. **Fragmentz v2 Mintleme**: Yeterli ETH bakiyesi varsa, Fragmentz token'larını mintleme işlemi başlatılır. 
 
    - **Mintleme Sayısı**: Bot, mintlenebilir Fragmentz sayısını kontrol eder.
    - **Mintleme**: Token'lar başarılı bir şekilde mintlendikten sonra, işlem tamamlanır.
