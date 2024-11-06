@@ -38,10 +38,10 @@ rm google-chrome-stable_current_amd64.deb
 
 # xvfb sanal ekran kurulumunu yap
 sudo apt-get install xvfb
-
+clear
 # .env dosyasını oluştur
-echo "Lütfen .env dosyasını oluşturmak için gerekli bilgileri girin."
-
+echo "Lütfen .env dosyasını oluşturmak için gerekli bilgileri girin:"
+echo
 # Kullanıcıdan Private Key ve Password bilgilerini al
 echo "PRIVATE_KEY bilgisini girin:"
 read PRIVATE_KEY
