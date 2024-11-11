@@ -24,6 +24,7 @@ frag_URL = "https://rivalz.ai/fragmentz"  # mint sayfası
 dashboard_URL = "https://rivalz.ai/dashboard"
 addNetwork_URL = "chrome-extension://opfgelmcmbiajamepnmloijbpoleiama/popup.html#/settings/networks/"
 RPC_URL = "https://rivalz2.rpc.caldera.xyz/http"
+MAX_LOG_SIZE = 15 * 1024 * 1024  # 15 MB # Maksimum dosya boyutu (örneğin, 5 MB)
 
 # Xvfb sanal ekranı başlat
 display = Display(visible=False, size=(1920, 1080))
@@ -58,7 +59,15 @@ def env_load():
         print(
             ".env dosyasına ulaşılamadı. Lütfen otomatik kurulum scriptini (install_and_run.sh) çalıştırın ve kurulum sonrası bir .env dosyası oluşturulması için gereken bilgileri girin.")
         sys.exit()
-log_file = open("output_log.txt", "a") # Dosyayı açıyoruz (appending mode ile açıyoruz, yani eski içerik üzerine yazmadan ekliyoruz)
+
+# Dosya varsa boyutunu kontrol et
+if os.path.exists("output_log.txt") and os.path.getsize("output_log.txt") > MAX_LOG_SIZE:
+    with open("output_log.txt", "w") as log_file:
+        log_file.write("")  # Dosyayı sıfırla
+    print("Log dosyası sıfırlandı.")
+    log_file = open("output_log.txt", "a") # Dosyayı açıyoruz (appending mode ile açıyoruz, yani eski içerik üzerine yazmadan ekliyoruz)
+else:
+    log_file = open("output_log.txt", "a") # Dosyayı açıyoruz (appending mode ile açıyoruz, yani eski içerik üzerine yazmadan ekliyoruz)
 sys.stdout = Tee(sys.stdout, log_file) # Ekran ve dosya çıktıları için Tee sınıfını kullanıyoruz
 
 def center_text(text, width):
