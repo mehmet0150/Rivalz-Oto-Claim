@@ -63,8 +63,8 @@ def env_load():
 # Dosya varsa boyutunu kontrol et
 if os.path.exists("output_log.txt") and os.path.getsize("output_log.txt") > MAX_LOG_SIZE:
     with open("output_log.txt", "w") as log_file:
-        log_file.write("")  # Dosyayı sıfırla
-    print("Log dosyası sıfırlandı.")
+        log_file.write("Log dosyası sıfırlandı.")  # Dosyayı sıfırla
+        log_file.close
     log_file = open("output_log.txt", "a") # Dosyayı açıyoruz (appending mode ile açıyoruz, yani eski içerik üzerine yazmadan ekliyoruz)
 else:
     log_file = open("output_log.txt", "a") # Dosyayı açıyoruz (appending mode ile açıyoruz, yani eski içerik üzerine yazmadan ekliyoruz)
